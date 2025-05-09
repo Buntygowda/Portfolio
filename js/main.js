@@ -126,4 +126,34 @@ document.addEventListener('DOMContentLoaded', () => {
     
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll(); // Initial check
+});
+
+// Add this to your existing main.js
+document.addEventListener('DOMContentLoaded', function() {
+    const texts = ['AI Engineer', 'Data Scientist', 'Software Developer'];
+    let count = 0;
+    let index = 0;
+    let currentText = '';
+    let letter = '';
+    
+    function type() {
+        if (count === texts.length) {
+            count = 0;
+        }
+        currentText = texts[count];
+        letter = currentText.slice(0, ++index);
+        
+        document.querySelector('.dynamic-text').textContent = letter;
+        
+        if (letter.length === currentText.length) {
+            setTimeout(() => {
+                index = 0;
+                count++;
+            }, 2000);
+        }
+        
+        setTimeout(type, 200);
+    }
+    
+    type();
 }); 
